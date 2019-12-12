@@ -1,6 +1,8 @@
 # Home-telemetry
 Home telemetry system by NH3CL
 
+My Public ThingSpeak channel: https://thingspeak.com/channels/929511
+
 
 # Components
 
