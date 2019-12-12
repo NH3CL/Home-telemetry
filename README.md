@@ -11,6 +11,6 @@ Home telemetry system by NH3CL
  - PSU
    - Power bank
   
+![NodeMCU](https://cdn.instructables.com/FNA/7UD5/JH8JBT8A/FNA7UD5JH8JBT8A.LARGE.jpg)
+  
 
-  
-  
