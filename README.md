@@ -12,5 +12,9 @@ Home telemetry system by NH3CL
    - Power bank
   
 ![NodeMCU](https://cdn.instructables.com/FNA/7UD5/JH8JBT8A/FNA7UD5JH8JBT8A.LARGE.jpg)
-  
+
+# NodeMCU pins
+Onboard name - GPIO nr.
+
+![NodeMCUpins](https://cdn.instructables.com/FIR/Y0M6/JH8JBTNR/FIRY0M6JH8JBTNR.LARGE.jpg?auto=webp&frame=1&width=428&fit=bounds)
 
