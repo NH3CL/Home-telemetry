@@ -1,0 +1,22 @@
+{
+  "name": "The IoT Guru integration",
+  "keywords": "cloud, alerts, mqtt, rest, chart",
+  "description": "Real time charts, device catalog, data store with backup, battery and offline alert, MQTT broker, HTTP REST support, Android and web client.",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/IoTGuruLive/theiotguru-arduino-library.git"
+  },
+  "authors": 
+  [
+    {
+      "name": "Gábor AUTH",
+      "email": "gabor.auth@iotguru.live",
+      "maintainer": true
+    }
+  ],
+  "version": "1.2.2",
+  "examples": "examples/*/*.ino",
+  "frameworks": "arduino",
+  "platforms": "esp8266,esp32"
+}

@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For ExampleLibrary
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setCallback	KEYWORD2
+setCheckDuration	KEYWORD2
+setDebugPrinter	KEYWORD2
+setNetworkClient	KEYWORD2
+
+check	KEYWORD2
+loop	KEYWORD2
+
+sendHttpValue	KEYWORD2
+sendMqttValue	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+IoTGuru	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+IOT_GURU_CLIENT_VERSION	LITERAL1
