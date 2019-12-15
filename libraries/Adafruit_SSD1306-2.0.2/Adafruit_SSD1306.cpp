@@ -1086,6 +1086,7 @@ void Adafruit_SSD1306::invertDisplay(boolean i) {
     @note   This has an immediate effect on the display, no need to call the
             display() function -- buffer contents are not changed.
 */
+
 void Adafruit_SSD1306::dim(boolean dim) {
   uint8_t contrast;
 
