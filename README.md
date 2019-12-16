@@ -10,10 +10,15 @@ My Public ThingSpeak channel: https://thingspeak.com/channels/929511
    - Raspberry Pi 3B+
  - Nodes
    - NodeMCU ESP8266 ESP-12E (5V powered)
+   - DHT22 Temperature and bumidity sensor
+   - 0.96' I2C OLED
  - PSU
-   - Power bank
+   - Power bank (USB)
   
 ![NodeMCU](https://cdn.instructables.com/FNA/7UD5/JH8JBT8A/FNA7UD5JH8JBT8A.LARGE.jpg)
+
+Circuit shematic
+![Shema](https://i.imgur.com/dLK0bKx.png)
 
 # NodeMCU pins
 Onboard name - GPIO nr.
