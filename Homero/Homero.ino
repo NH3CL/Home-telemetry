@@ -18,7 +18,7 @@ const char* MY_PWD = "_PWD_";
 
 /* Thinkspeak */
 const char* TS_SERVER = "api.thingspeak.com";
-String TS_API_KEY = "_TS_APY_KEY";
+String TS_API_KEY = "_TS_API_KEY_";
 int sent = 0;
 
 /* OLED */
@@ -44,14 +44,15 @@ float temperature = 0;
 float humidity = 0;
 uint32_t time1 = millis();
 uint32_t time2 = millis();
-uint32_t readDelay = 60000; //300000; //6000
+uint32_t readDelay = 300000; //300000; //6000
+int bright = 0; // fényerő
 
 
 void setup()
 {
   Serial.begin(115200);
   pinMode(button, INPUT);
-
+  pinMode(A0,INPUT);
   
   connectWifi();
 
@@ -60,12 +61,18 @@ void setup()
   // Clear the buffer.
   display.clearDisplay();
   display.display();
+  //display.dim(true);
   display.setTextSize(2);
   display.setTextColor(WHITE);
   display.setCursor(0, 20);
   display.println("NH Temp monitor v0.1");
   display.display();
+  
+    
+
 }
+
+
 
 void loop()
 {
@@ -82,6 +89,7 @@ void loop()
     getDhtData();
     display.clearDisplay();
     display.display();
+      
 
   }
   else
@@ -90,7 +98,7 @@ void loop()
     display.clearDisplay();
     display.println("HIGH");
     display.display();
-
+    delay (500);
   }
 
 }
@@ -105,13 +113,16 @@ void getDhtDataSilent(void)
   display.display();
 
   // read without samples.
-  //  float temperature = 0;
-  //  float humidity = 0;
   int err = SimpleDHTErrSuccess;
   if ((err = dht22.read2(&temperature, &humidity, NULL)) != SimpleDHTErrSuccess) {
     Serial.print("Read DHT22 failed, err="); Serial.println(err); delay(2000);
     return;
   }
+  
+  bright=analogRead(17);      //assign value of LDR sensor to a temporary variable
+  Serial.println("Brightness="); //print on serial monitor using ""
+  Serial.println(bright);   
+   
 
   Serial.print("Hőmérséklet: "); Serial.print((float)temperature); Serial.print(" °C, ");
   Serial.print("Páratartalom: "); Serial.print((float)humidity); Serial.println(" rH%");
@@ -127,6 +138,8 @@ void getDhtDataSilent(void)
     postStr += String(temperature);
     postStr += "&field2=";
     postStr += String(humidity);
+    postStr += "&field3=";
+    postStr += String(bright);
     postStr += "\r\n\r\n";
 
     client.print("POST /update HTTP/1.1\n");
@@ -143,8 +156,8 @@ void getDhtDataSilent(void)
   sent++;
   client.stop();
 
-  Serial.println("Data is sent. I'm going to sleep for 300s");
-    ESP.deepSleep(300e6); 
+//  Serial.println("Data is sent. I'm going to sleep for 30s");
+//    ESP.deepSleep(300e6); 
 }
 
 
@@ -161,7 +174,11 @@ void getDhtData(void)
     Serial.print("Read DHT22 failed, err="); Serial.println(err); delay(2000);
     return;
   }
-
+  
+  bright=analogRead(17);      //assign value of LDR sensor to a temporary variable
+  Serial.print("Intensity="); //print on serial monitor using ""
+  Serial.println(bright);   
+  
   Serial.print("Hőmérséklet: "); Serial.print((float)temperature); Serial.print(" °C, ");
   Serial.print("Páratartalom: "); Serial.print((float)humidity); Serial.println(" rH%");
 
@@ -175,11 +192,13 @@ void getDhtData(void)
   display.print("Hum: "); display.print(humidity); display.print(" rH%");
   display.display();
 
-
-  //*5000 5 másodpercig megy a kijelző */
+  //5 percenként küldés 5x60
+  //delay(300000); /*5000 5 másodpercig megy a kijelző */
   delay(5000);
 
 }
+
+
 
 /***************************************************
    Connecting WiFi
