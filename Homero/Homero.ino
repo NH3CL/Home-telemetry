@@ -60,18 +60,12 @@ void setup()
   // Clear the buffer.
   display.clearDisplay();
   display.display();
-  //display.dim(true);
   display.setTextSize(2);
   display.setTextColor(WHITE);
   display.setCursor(0, 20);
   display.println("NH Temp monitor v0.1");
   display.display();
-  
-    
-
 }
-
-
 
 void loop()
 {
@@ -149,7 +143,7 @@ void getDhtDataSilent(void)
   sent++;
   client.stop();
 
-  Serial.println("Data is sent. I'm going to sleep for 30s");
+  Serial.println("Data is sent. I'm going to sleep for 300s");
     ESP.deepSleep(300e6); 
 }
 
@@ -162,8 +156,6 @@ void getDhtData(void)
 
 
   // read without samples.
-  //  float temperature = 0;
-  //  float humidity = 0;
   int err = SimpleDHTErrSuccess;
   if ((err = dht22.read2(&temperature, &humidity, NULL)) != SimpleDHTErrSuccess) {
     Serial.print("Read DHT22 failed, err="); Serial.println(err); delay(2000);
@@ -184,13 +176,10 @@ void getDhtData(void)
   display.display();
 
 
-  //5 percenként küldés 5x60
-  //delay(300000); /*5000 5 másodpercig megy a kijelző */
+  //*5000 5 másodpercig megy a kijelző */
   delay(5000);
 
 }
-
-
 
 /***************************************************
    Connecting WiFi
