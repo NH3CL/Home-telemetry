@@ -18,7 +18,7 @@ const char* MY_PWD = "_PWD_";
 
 /* Thinkspeak */
 const char* TS_SERVER = "api.thingspeak.com";
-String TS_API_KEY = "_TS_API_KEY_";
+String TS_API_KEY = "_TS_API_KEY";
 int sent = 0;
 
 /* OLED */
@@ -47,12 +47,19 @@ uint32_t time2 = millis();
 uint32_t readDelay = 300000; //300000; //6000
 int bright = 0; // fényerő
 
+/*LED*/
+const int RED = D5;
+const int GREEN = D6;
+const int BLUE = D7;
 
 void setup()
 {
   Serial.begin(115200);
   pinMode(button, INPUT);
-  pinMode(A0,INPUT);
+/*  pinMode(A0,INPUT);
+  pinMode(D5,OUTPUT);
+  pinMode(D6,OUTPUT);
+  pinMode(D7,OUTPUT);*/
   
   connectWifi();
 
@@ -89,7 +96,7 @@ void loop()
     getDhtData();
     display.clearDisplay();
     display.display();
-      
+    
 
   }
   else
@@ -101,6 +108,29 @@ void loop()
     delay (500);
   }
 
+
+/*
+   if(50<humidity<70)
+    {
+      analogWrite(RED, 250);
+      analogWrite(GREEN, 100);
+      analogWrite(BLUE, 100);  
+      delay (1000);
+    }
+    else if(30<humidity<50) {
+      digitalWrite(RED, LOW);
+      digitalWrite(GREEN, LOW);
+      digitalWrite(BLUE, LOW);  
+      delay (1000);
+      }
+    else
+    {
+      digitalWrite(RED, LOW);
+      digitalWrite(GREEN, LOW);
+      digitalWrite(BLUE, LOW);  
+      delay (1000);
+      }
+*/
 }
 
 /* Get DHT DATA SILENT */
@@ -122,7 +152,6 @@ void getDhtDataSilent(void)
   bright=analogRead(17);      //assign value of LDR sensor to a temporary variable
   Serial.println("Brightness="); //print on serial monitor using ""
   Serial.println(bright);   
-   
 
   Serial.print("Hőmérséklet: "); Serial.print((float)temperature); Serial.print(" °C, ");
   Serial.print("Páratartalom: "); Serial.print((float)humidity); Serial.println(" rH%");
@@ -192,6 +221,7 @@ void getDhtData(void)
   display.print("Hum: "); display.print(humidity); display.print(" rH%");
   display.display();
 
+      
   //5 percenként küldés 5x60
   //delay(300000); /*5000 5 másodpercig megy a kijelző */
   delay(5000);
